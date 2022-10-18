@@ -20,6 +20,15 @@ import award05 from '../assets/award05.png';
 import sign from '../assets/sign.png';
 import quote from '../assets/quote.png';
 import gericht from '../assets/gericht.png';
+import pestoXanh from '../assets/pesto-xanh.png';
+import tomCocktail from '../assets/tom-cocktail.png'
+import nhietDoi from '../assets/nhietdoi.png'
+import aloha from '../assets/aloha.png'
+import canada from '../assets/canada.png'
+import chicken from '../assets/chicken.png'
+import phomai from '../assets/phomai.png'
+import thitnguoi from '../assets/thitnguoi.png'
+
 
 export default {
   bg,
@@ -44,4 +53,12 @@ export default {
   sign,
   quote,
   gericht,
+  pestoXanh,
+  tomCocktail,
+  nhietDoi,
+  aloha,
+  canada,
+  chicken,
+  phomai,
+  thitnguoi
 };

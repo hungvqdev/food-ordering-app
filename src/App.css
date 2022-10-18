@@ -101,6 +101,10 @@
   width: 45px;
 }
 
+.p__menuItem {
+  margin-bottom: 0.3rem !important;
+}
+
 @media screen and (min-width: 2000px) {
   .custom__button,
   .p__cormorant {
@@ -121,6 +125,10 @@
   .spoon__img {
     width: 80px;
   }
+
+  .menuItem_card {
+    margin: 40px !important;
+  }
 }
 
 @media screen and (max-width: 1150px) {
@@ -139,12 +147,14 @@
   .app__wrapper_img img {
     width: 100%;
   }
+
 }
 
 @media screen and (max-width: 850px) {
   .section__padding {
     padding: 4rem;
   }
+
 }
 
 @media screen and (max-width: 650px) {
@@ -174,4 +184,5 @@
     font-size: 45px;
     line-height: 70px;
   }
+
 }

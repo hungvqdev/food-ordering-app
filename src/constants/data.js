@@ -79,4 +79,122 @@ const awards = [
   },
 ];
 
-export default { wines, cocktails, awards };
+const pizzas = [
+  {
+    name: "Pizza Hải Sản Pesto Xanh",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: "100",
+        medium: "150",
+        large: "200",
+      },
+    ],
+    category: " Hải sản",
+    image: images.pestoXanh,
+    description:
+      "Tôm, cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh",
+  },
+  {
+    name: "Pizza Tôm Cocktail",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: " Hải sản",
+    image: images.tomCocktail,
+    description: "Tôm với nấm, dứa, cà chua và sốt Thousand Island.",
+  },
+  {
+    name: "Pizza Hải Sản Nhiệt Đới",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: " Hải sản",
+    image: images.nhietDoi,
+    description: "Tôm, nghêu, mực cua, dứa với sốt Thousand Island",
+  },
+  {
+    name: "Pizza Aloha",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: " Thịt",
+    image: images.aloha,
+    description:
+      "Thịt nguội, xúc xích tiêu cay và dứa hòa quyện với sốt Thousand Island",
+  },
+  {
+    name: "Pizza Thịt Nguội Canada",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: " Thịt",
+    image: images.canada,
+    description: "Sự kết hợp giữa thịt nguội và bắp ngọt",
+  },
+  {
+    name: "Pizza Thịt Nguội & Nấm",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: " Thịt",
+    image: images.thitnguoi,
+    description:
+      "Pizza giăm bông và nấm đem đến cho bạn những trải nghiệm thú vị.",
+  },
+  {
+    name: "Pizza Gà Nướng Dứa",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: "Thịt",
+    image: images.chicken,
+    description: "Thịt gà mang vị ngọt của dứa kết hợp với vị cay nóng của ớt",
+  },
+  {
+    name: "Pizza Phô Mai",
+    varients: ["small", "medium", "large"],
+    prices: [
+      {
+        small: 100,
+        medium: 150,
+        large: 200,
+      },
+    ],
+    category: "Chay",
+    image: images.phomai,
+    description: "Bánh Pizza với vô vàn phô mai để bạn tha hồ tận hưởng.",
+  },
+];
+
+export default { wines, cocktails, awards, pizzas };
