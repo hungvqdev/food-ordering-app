@@ -3,7 +3,12 @@ const db = require('./db')
 
 const app = express()
 
+const Pizza = require('./models/pizza')
+const pizzaRouter = require('./routes/pizza')
+
 app.use(express.json())
+
+app.use('/api/pizzas/', pizzaRouter)
 
 app.get('/', (req, res) => {
     res.send('server')
