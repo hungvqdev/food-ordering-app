@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../../actions/pizzaActions";
-import { data } from "../../constants";
 import { SubHeading, MenuItem } from "../../components";
 
 const Menu = () => {

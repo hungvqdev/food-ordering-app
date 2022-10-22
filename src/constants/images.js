@@ -30,7 +30,7 @@ import phomai from '../assets/phomai.png'
 import thitnguoi from '../assets/thitnguoi.png'
 
 
-export default {
+const images = {
   bg,
   chef,
   G,
@@ -62,3 +62,5 @@ export default {
   phomai,
   thitnguoi
 };
+
+export default images

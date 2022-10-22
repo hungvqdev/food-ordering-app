@@ -4,10 +4,13 @@ import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import {  GiShoppingCart } from 'react-icons/gi'
 import images from '../../constants/images';
 import './Navbar.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+  const cartState = useSelector(state => state.cartReducer)
+  console.log(cartState,'cart')
   return (
     <nav className="app__navbar shadow-lg">
       <div className="app__navbar-logo">
@@ -16,7 +19,7 @@ const Navbar = () => {
       <div className="app__navbar-login">
         <a href="#login" className="p__opensans">Đăng nhập</a>
         <div />
-        <a href="/" className="p__opensans">Giỏ hàng</a>
+        <a href="/" className="p__opensans">Giỏ hàng {cartState.cartItems.length}</a>
       </div>
       <div className="app__navbar-smallscreen">
         <GiShoppingCart color="#fff" fontSize={30} className="navbar__right slide-bottom"/>
