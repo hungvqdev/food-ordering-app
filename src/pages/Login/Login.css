@@ -1,0 +1,130 @@
+
+
+ .login_bg {
+    background: linear-gradient(90deg, #000, transparent 70%), url(../../assets/pizza-bg.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+    opacity: 85%;
+  }
+
+.login {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+}
+  
+
+.login .content{
+    flex:1 1 40rem;
+ }
+ 
+ .login .content p{
+    font-family: var(--font-base);
+    padding-left: 5rem;
+    line-height: 2;
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+ }
+
+ .login .content .button {
+  width: 18%;
+  margin: auto;
+  text-align: center;
+ }
+
+ .login .content a{
+  text-decoration: none;
+ }
+ .form-login{
+    flex:1 1 40rem;
+ }
+
+ .form-content{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   align-content:auto
+ }
+
+ .form-content .login-form{
+  width: 60%;
+}
+
+.login-form{
+   background: url('../../assets/bg.png');
+   opacity: 90%;
+}
+
+ .form-content .input-boxes{
+   margin-top: 30px;
+ }
+ .form-content .input-box{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 50px;
+   width: 100%;
+   margin: 10px 0;
+   position: relative;
+   border-bottom: 2px solid var(--color-golden);
+ }
+.input-box input{
+   height: 100%;
+   width: 100%;
+   outline: none;
+   border: none;
+   padding: 0 30px;
+   font-size: 16px;
+   font-weight: 500;
+   
+   transition: all 0.3s ease;
+ }
+
+ .form-content .input-box input:focus,
+ .form-content .input-box input:valid{
+   border-color: var(--color-golden);;
+ }
+ .form-content .input-box i{
+   position: absolute;
+   color: var(--color-golden);;
+   font-size: 17px;
+ }
+
+ .hr_login {
+   padding: 10px 0;
+   border-bottom: 1px solid var(--color-golden);
+ }
+
+.form-content .text{
+   font-size: 16px;
+   font-weight: 500;
+   color: #fff;
+ }
+
+ .form-content .text a{
+   text-decoration: none;
+   color:var(--color-golden)
+ }
+.form-content .text a:hover{
+   text-decoration: underline;
+ }
+
+ input[type=text], input[type=password] {
+  background: url('../../assets/bg.png') !important;
+  color: white;
+  opacity: 85%;
+}
+
+ @media (max-width: 1200px) {
+   .content{
+     display: none;
+   }
+
+   .form-content .login-form{
+    width: auto;
+  }
+
+ }

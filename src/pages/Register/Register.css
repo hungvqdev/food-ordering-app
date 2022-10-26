@@ -1,0 +1,16 @@
+.register_bg {
+    background: linear-gradient(30deg, #000, transparent 80%), url('../../assets/pizza_bg_2.webp');
+    height: 100vh;  
+    background-size: cover;
+}
+
+.register_flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_register {
+    background: url('../../assets/bg.png');
+   opacity: 80%;
+}

@@ -12,7 +12,7 @@ const Menu = () => {
 
   useEffect(() => {
     dispatch(getAllPizzas());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app__bg section__padding " id="menu">
@@ -30,8 +30,8 @@ const Menu = () => {
         ) : (
           pizzas.map((pizza) => {
             return (
-              <div className="col-lg-4 col-md-6 col-sm-12"   key={pizza._id}>
-                    <MenuItem pizza={pizza} />
+              <div className="col-lg-4 col-md-6 col-sm-12" key={pizza._id}>
+                <MenuItem pizza={pizza} />
               </div>
             );
           })

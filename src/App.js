@@ -6,6 +6,9 @@ import Header from "./pages/Header/Header"
 import Footer from "./pages/Footer/Footer"
 import Menu from './pages/Menu/Menu'
 import Cart from './pages/Cart/Cart'
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
             <Footer/>
           </Route>
           <Route path="/cart" exact component={Cart}/>
+          <Route path="/register" exact component={Register}/>
+          <Route path="/login" exact component={Login}/>
         </Switch>
         
       </BrowserRouter>

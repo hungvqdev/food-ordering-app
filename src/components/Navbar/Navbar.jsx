@@ -18,7 +18,7 @@ const Navbar = () => {
         <img src={images.gericht} alt="app__logo" />
       </div>
       <div className="app__navbar-login">
-        <a href="#login" className="p__opensans">
+        <a href="/login" className="p__opensans">
           Đăng nhập
         </a>
         <div />
@@ -49,17 +49,17 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                <a href="/" onClick={() => setToggleMenu(false)}>
                   Trang chủ
                 </a>
               </li>
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                <a href="#menu" onClick={() => setToggleMenu(false)}>
                   Menu
                 </a>
               </li>
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                <a href="/login" onClick={() => setToggleMenu(false)}>
                   Đăng nhập
                 </a>
               </li>
