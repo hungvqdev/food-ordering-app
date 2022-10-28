@@ -23,30 +23,29 @@ const Login = () => {
               <div className="p__cormorant text-center " style={{ fontSize: "29px"}}>Đăng nhập</div>
               <SubHeading />
               <form action="#">
-                <div class="input-boxes">
-                  <div class="input-box"> 
+                <div className="input-boxes">
+                  <div className="input-box"> 
                     <input
                       type="text"
                       placeholder="Email"
                       required
                     />
                   </div>
-                  <div class="input-box">
-                    <i class="fas fa-lock"></i>
+                  <div className="input-box">
                     <input
                       type="password"
                       placeholder="Mật khẩu"
                       required
                     />
                   </div>
-                  <div class="text mt-3 mb-3 " >
+                  <div className="text mt-3 mb-3 " >
                     <a href="#">Quên mật khẩu?</a>
                   </div>
                  
-                  <div class="button input-box custom__button ">
+                  <div className="button input-box custom__button ">
                       Đăng nhập
                   </div>
-                  <div class="text sign-up-text mb-4 ">
+                  <div className="text sign-up-text mb-4 ">
                     Bạn chưa có tài khoản ? <a href="/register"><b>Đăng ký ngay</b></a>
                   </div>
                 </div>
