@@ -2,25 +2,40 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
+import { FaSignInAlt } from "react-icons/fa";
 import images from "../../constants/images";
 import "./Navbar.css";
-import { useSelector } from "react-redux";
-import { Badge } from "react-bootstrap";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Badge, Dropdown } from "react-bootstrap";
+import { logoutUser } from "../../actions/userActions";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const cartState = useSelector((state) => state.cartReducer);
-  console.log(cartState, "cart");
+  const userState = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = userState;
   return (
     <nav className="app__navbar shadow-lg">
       <div className="app__navbar-logo">
         <img src={images.gericht} alt="app__logo" />
       </div>
       <div className="app__navbar-login">
-        <a href="/login" className="p__opensans">
-          Đăng nhập
-        </a>
+        {currentUser ? (
+          <Dropdown className="p__opensans app__navbar-dropdown">
+            <Dropdown.Toggle>{currentUser.name}</Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Hồ Sơ</Dropdown.Item>
+              <Dropdown.Item href="#/action-2" onClick={() => {dispatch(logoutUser())}}>Đăng xuất</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        ) : (
+          <a href="/login" className="p__opensans">
+            Đăng nhập
+          </a>
+        )}
+
         <div />
         <a href="/cart" className="p__opensans">
           Giỏ hàng {cartState.cartItems.length}
@@ -33,13 +48,21 @@ const Navbar = () => {
             fontSize={30}
             className=" slide-bottom"
           />
-        <Badge color="danger" position="top-start" shape="rounded-pill">{cartState.cartItems.length}</Badge>
+          <Badge color="danger" position="top-start" shape="rounded-pill">
+            {cartState.cartItems.length}
+          </Badge>
         </a>
-        <GiHamburgerMenu
-          color="#fff"
-          fontSize={27}
-          onClick={() => setToggleMenu(true)}
-        />
+        {currentUser ? (
+          <GiHamburgerMenu
+            color="#fff"
+            fontSize={27}
+            onClick={() => setToggleMenu(true)}
+          />
+        ) : (
+          <a href="/login" className="navbar__right">
+            <FaSignInAlt color="#fff" fontSize={28} className=" slide-bottom" />
+          </a>
+        )}
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center">
             <MdOutlineRestaurantMenu
@@ -49,19 +72,14 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="/" onClick={() => setToggleMenu(false)}>
-                  Trang chủ
-                </a>
-              </li>
-              <li>
                 <a href="#menu" onClick={() => setToggleMenu(false)}>
-                  Menu
+                  Hồ sơ
                 </a>
               </li>
               <li>
-                <a href="/login" onClick={() => setToggleMenu(false)}>
-                  Đăng nhập
-                </a>
+                <div onClick={() => {dispatch(logoutUser())}}>
+                  Đăng xuất
+                </div>
               </li>
             </ul>
           </div>

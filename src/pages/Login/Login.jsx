@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../actions/userActions";
 import { SubHeading } from "../../components";
 import "./Login.css";
 
 const Login = () => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if(localStorage.getItem('currentUser')){
+      window.location.href='/'
+    }
+  }, [])
+
+  const login = () => {
+        const user = {
+          email,
+          password
+        }
+        dispatch(loginUser(user))
+  }
   return (
     <div className="login_bg">
       <div className="login">
@@ -29,6 +49,8 @@ const Login = () => {
                       type="text"
                       placeholder="Email"
                       required
+                      value={email}
+                      onChange={(e) => {setEmail(e.target.value)}}
                     />
                   </div>
                   <div className="input-box">
@@ -36,15 +58,17 @@ const Login = () => {
                       type="password"
                       placeholder="Mật khẩu"
                       required
+                      value={password}
+                      onChange={(e) => {setPassword(e.target.value)}}
                     />
                   </div>
                   <div className="text mt-3 mb-3 " >
                     <a href="#">Quên mật khẩu?</a>
                   </div>
                  
-                  <div className="button input-box custom__button ">
+                  <button className="button input-box custom__button " onClick={login}>
                       Đăng nhập
-                  </div>
+                  </button>
                   <div className="text sign-up-text mb-4 ">
                     Bạn chưa có tài khoản ? <a href="/register"><b>Đăng ký ngay</b></a>
                   </div>
