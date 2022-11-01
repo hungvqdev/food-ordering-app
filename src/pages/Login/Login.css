@@ -3,7 +3,7 @@
  .login_bg {
     background: linear-gradient(90deg, #000, transparent 70%), url(../../assets/pizza-bg.jpg) no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: calc(100vh - 75px);
     opacity: 85%;
   }
 
@@ -71,6 +71,7 @@
    position: relative;
    border-bottom: 2px solid var(--color-golden);
  }
+
 .input-box input{
    height: 100%;
    width: 100%;
@@ -87,9 +88,9 @@
  .form-content .input-box input:valid{
    border-color: var(--color-golden);;
  }
- .form-content .input-box i{
+ .form-content .input-box S{
    position: absolute;
-   color: var(--color-golden);;
+   color: rgb(255, 255, 255);
    font-size: 17px;
  }
 

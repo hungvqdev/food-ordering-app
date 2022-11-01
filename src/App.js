@@ -9,13 +9,15 @@ import Menu from './pages/Menu/Menu'
 import Cart from './pages/Cart/Cart'
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import Loading from './components/Alert/Loading';
+
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
       <BrowserRouter>
+      <Navbar/>
         <Switch>
           <Route exact path="/">
             <Header/>
@@ -25,6 +27,7 @@ function App() {
           <Route path="/cart" exact component={Cart}/>
           <Route path="/register" exact component={Register}/>
           <Route path="/login" exact component={Login}/>
+          <Route path="/test" exact component={Loading}/>
         </Switch>
         
       </BrowserRouter>

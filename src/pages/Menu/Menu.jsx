@@ -2,17 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../../actions/pizzaActions";
 import { SubHeading, MenuItem } from "../../components";
+import Loading from "../../components/Alert/Loading";
 
 const Menu = () => {
   const dispatch = useDispatch();
 
   const pizzasState = useSelector((state) => state.getAllPizzasReducer);
-
   const { pizzas, error, loading } = pizzasState;
 
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);
+
 
   return (
     <div className="app__bg section__padding " id="menu">
@@ -24,9 +25,9 @@ const Menu = () => {
       </div>
       <div className="row">
         {loading ? (
-          <h1>Loading</h1>
+          <Loading style={{width: '100px', height: '100px'}} />
         ) : error ? (
-          <h1>Error</h1>
+          <div className="p__cormorant text-center mt-4">Có lỗi xảy ra!!! </div>
         ) : (
           pizzas.map((pizza) => {
             return (

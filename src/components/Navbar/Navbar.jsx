@@ -8,6 +8,7 @@ import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Dropdown } from "react-bootstrap";
 import { logoutUser } from "../../actions/userActions";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -17,8 +18,9 @@ const Navbar = () => {
   const { currentUser } = userState;
   return (
     <nav className="app__navbar shadow-lg">
+      
       <div className="app__navbar-logo">
-        <img src={images.gericht} alt="app__logo" />
+        <Link to="/"><img src={images.gericht} alt="app__logo" /></Link>
       </div>
       <div className="app__navbar-login">
         {currentUser ? (
@@ -27,22 +29,22 @@ const Navbar = () => {
 
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Hồ Sơ</Dropdown.Item>
-              <Dropdown.Item href="#/action-2" onClick={() => {dispatch(logoutUser())}}>Đăng xuất</Dropdown.Item>
+              <Dropdown.Item  onClick={() => {dispatch(logoutUser())}}>Đăng xuất</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          <a href="/login" className="p__opensans">
+          <Link to="/login" className="p__opensans">
             Đăng nhập
-          </a>
+          </Link>
         )}
 
         <div />
-        <a href="/cart" className="p__opensans">
+        <Link to="/cart" className="p__opensans">
           Giỏ hàng {cartState.cartItems.length}
-        </a>
+        </Link>
       </div>
       <div className="app__navbar-smallscreen">
-        <a href="/cart" className="navbar__right">
+        <Link to="/cart" className="navbar__right">
           <GiShoppingCart
             color="#fff"
             fontSize={30}
@@ -51,7 +53,7 @@ const Navbar = () => {
           <Badge color="danger" position="top-start" shape="rounded-pill">
             {cartState.cartItems.length}
           </Badge>
-        </a>
+        </Link>
         {currentUser ? (
           <GiHamburgerMenu
             color="#fff"
@@ -59,9 +61,9 @@ const Navbar = () => {
             onClick={() => setToggleMenu(true)}
           />
         ) : (
-          <a href="/login" className="navbar__right">
+          <Link to="/login" className="navbar__right">
             <FaSignInAlt color="#fff" fontSize={28} className=" slide-bottom" />
-          </a>
+          </Link>
         )}
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center">

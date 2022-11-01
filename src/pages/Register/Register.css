@@ -1,6 +1,6 @@
 .register_bg {
     background: linear-gradient(30deg, #000, transparent 80%), url('../../assets/pizza_bg_2.webp');
-    height: 100vh;  
+    height: calc(100vh - 75px);  
     background-size: cover;
 }
 

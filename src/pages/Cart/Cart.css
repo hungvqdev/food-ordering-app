@@ -22,8 +22,7 @@
 
 .cart_bg {
   background: url('../../assets/bg.png');
-  height: 100vh;
-
+  height: 100%;
 }
 
 @media screen and (max-width: 992px) {
