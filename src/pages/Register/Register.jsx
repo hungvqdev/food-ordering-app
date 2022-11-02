@@ -5,6 +5,8 @@ import { SubHeading } from "../../components";
 import { FormSuccess } from "../../components/Alert/Success";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { GiCoinsPile } from "react-icons/gi";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -14,10 +16,15 @@ const Register = () => {
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.registerUserReducer);
   const { success } = registerState;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const register = () => {
+  const signup = () => {
     if (password !== cpassword) {
-      alert("Sai mât khâru");
+      console.log(cpassword)
     } else {
       const user = {
         name,
@@ -44,59 +51,96 @@ const Register = () => {
                   Đăng ký
                 </div>
                 <SubHeading />
-                <div>
+                <form onSubmit={handleSubmit(signup)}>
                   <div className="input-boxes">
                     <div className="input-box">
                       <input
                         type="text"
                         placeholder="Tên tài khoản"
-                        required
+                        {...register("name", {
+                          required: true,
+                          minLength: 4,
+                          maxLength: 16,
+                        })}
                         value={name}
                         onChange={(e) => {
                           setName(e.target.value);
                         }}
                       />
                     </div>
+                    {errors.name?.type === "required" && (
+                      <p className="valid_error">Hãy nhập tên tài khoản</p>
+                    )}
+                    {errors.name?.type === "minLength" && (
+                      <p className="valid_error">Tên phải từ 4-16 ký tự</p>
+                    )}
+                    {errors.name?.type === "maxLength" && (
+                      <p className="valid_error">Tên phải từ 4-16 ký tự</p>
+                    )}
                     <div className="input-box">
                       <input
                         type="text"
                         placeholder="Email"
-                        required
+                        {...register("email", {
+                          required: true,
+                          pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        })}
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
                       />
                     </div>
+                    {errors.email?.type === "required" && (
+                      <p className="valid_error">Hãy nhập Email</p>
+                    )}
+                    {errors.email?.type === "pattern" && (
+                      <p className="valid_error">Email k hợp lệ</p>
+                    )}
                     <div className="input-box">
                       <input
                         type="password"
                         placeholder="Mật khẩu"
-                        required
+                        {...register("password", {
+                          required: true,
+                          minLength: 4,
+                          maxLength: 16,
+                        })}
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
                       />
                     </div>
+                    {errors.password?.type === "required" && (
+                      <p className="valid_error">Hãy nhập mật khẩu</p>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                      <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>
+                    )}
+                    {errors.password?.type === "maxLength" && (
+                      <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>
+                    )}
                     <div className="input-box">
                       <input
                         type="password"
                         placeholder="Xác nhận mật khẩu"
-                        required
+                        {...register("cpassword", { required: true})} 
                         value={cpassword}
                         onChange={(e) => {
                           setCpassword(e.target.value);
                         }}
                       />
                     </div>
+                    {errors.cpassword?.type === 'required' && <p className="valid_error">Hãy nhập mật khẩu xác nhận</p>}
+                    {password !== cpassword && <p className="valid_error">Mật khâu không trùng khớp với nhau</p>}
                     <div className="text mt-3 mb-3 ">
                       <a href="#">Quên mật khẩu?</a>
                     </div>
 
                     <button
+                      type="submit"
                       className="button input-box custom__button "
-                      onClick={register}
                     >
                       Đăng ký
                     </button>
@@ -107,7 +151,7 @@ const Register = () => {
                       </Link>
                     </div>
                   </div>
-                </div>
+                </form>
               </>
             )}
           </div>

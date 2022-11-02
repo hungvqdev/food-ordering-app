@@ -5,6 +5,7 @@ import { SubHeading } from "../../components";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import  Loading  from '../../components/Alert/Loading'
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.loginUserReducer);
   const { loading } = loginState;
-
+  const { register, handleSubmit, formState: { errors } } = useForm();
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
       window.location.href='/'
@@ -21,6 +22,7 @@ const Login = () => {
   }, []);
 
   const login = () => {
+    console.log(errors,' ok')
     const user = {
       email,
       password,
@@ -50,37 +52,45 @@ const Login = () => {
                 Đăng nhập
               </div>
               <SubHeading />
-              <div>
+              <form onSubmit={handleSubmit(login)}>
                 <div className="input-boxes">
                   <div className="input-box">
                     <input
                       type="text"
                       placeholder="Email"
-                      required
+                      {...register("email", { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
+                      
                     />
+                    
                   </div>
+                  {errors.email?.type === 'required' && <p className="valid_error">Hãy nhập Email</p>}
+                  {errors.email?.type === 'pattern' && <p className="valid_error">Email k hợp lệ</p>}
+                  
                   <div className="input-box">
                     <input
                       type="password"
                       placeholder="Mật khẩu"
-                      required
+                      {...register("password", { required: true, minLength: 4, maxLength: 16 })} 
                       value={password}
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
                     />
                   </div>
+                  {errors.password?.type === 'required' && <p className="valid_error">Hãy nhập mật khẩu</p>}
+                  {errors.password?.type === 'minLength' && <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>}
+                  {errors.password?.type === 'maxLength' && <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>}
                   <div className="text mt-3 mb-3 ">
                     <a href="/">Quên mật khẩu?</a>
                   </div>
 
-                  <button
+                  <button type="submit"
                     className="button input-box custom__button "
-                    onClick={login}
+                   
                   >
                    {loading ? <Loading/> : 'Đăng nhập' } 
                   </button>
@@ -91,7 +101,7 @@ const Login = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
