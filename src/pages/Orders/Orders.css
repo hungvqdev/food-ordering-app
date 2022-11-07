@@ -1,0 +1,108 @@
+.orders_bg {
+    background: url('../../assets/bg.png');
+    height: 100%;
+  }
+
+  .orders_bg_success {
+    background: url('../../assets/bg.png');
+    height: calc(100vh - 75px);
+  }
+
+ .orders_p {
+  font-family: var(--font-base);
+  color: var(--color-white);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  line-height: 29.9px;
+  font-size: 20px;
+ } 
+
+ .orders_p_address {
+  font-family: var(--font-base);
+  color: var(--color-white);
+
+  letter-spacing: 0.04em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  line-height: 19.9px;
+  font-size: 18px;
+ } 
+ .orders_span {
+  font-family: var(--font-base);
+  color: black;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  font-size: 18px;
+  font-style: italic;
+ }
+
+ .title_bg {
+  background-color: var(--color-golden);
+  color: black !important;
+ }
+
+ .img_order {
+  width: 60px;
+  height: 60px;
+ }
+
+ .headtext_order {
+  font-family: var(--font-base);
+  color: white;
+  font-size: 50px;
+  line-height: 70.2px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+ }
+
+.order_button{
+  text-decoration: none;
+    transition: .5s ease;
+    border-radius: 8px;
+    font-family: var(--font-base);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 28px;
+    font-size: 18px;
+    padding: 0.5rem 1.5rem;;
+    outline: none;
+    cursor: pointer;
+}
+
+.order_button:hover{
+  background-color: var(--color-golden);
+  color: black;
+  border-radius: 2px;
+}
+
+#info_order span {
+  font-style: italic;
+}
+
+ @media screen and (max-width: 768px) {
+
+  .order_border_top {
+      border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important;
+      margin-top: 10px;
+  }
+  .orders_p {
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 20.9px;
+    font-size: 17px;
+   } 
+  
+   .orders_p_address {
+    letter-spacing: 0.02em;
+    font-size: 15px;
+   } 
+   .orders_span {
+    font-size: 14px;
+   }
+
+   .img_order {
+    width: 50px;
+    height: 50px;
+   }
+}

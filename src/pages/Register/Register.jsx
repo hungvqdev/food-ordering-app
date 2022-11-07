@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../actions/userActions";
 import { SubHeading } from "../../components";
@@ -6,13 +6,24 @@ import { FormSuccess } from "../../components/Alert/Success";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { GiCoinsPile } from "react-icons/gi";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    name: yup.string().required("Hãy nhập tên tài khoản"),
+    email: yup.string().email("Email không hợp lệ").required("Hãy nhập Email"),
+    password: yup
+      .string()
+      .min(4, "Mật khẩu phải từ 4-12 ký tự")
+      .max(12, "Mật khẩu phải từ 4-12 ký tự")
+      .required("Hãy nhập mật khẩu"),
+    cpassword: yup.string().required("Hãy nhập mật khẩu xác nhận"),
+  })
+  .required();
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
+  console.log(schema);
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.registerUserReducer);
   const { success } = registerState;
@@ -20,23 +31,19 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  useForm();
 
-  const signup = () => {
-    if (password !== cpassword) {
-      console.log(cpassword)
+  const signup = (user) => {
+    if (user.password !== user.cpassword) {
     } else {
-      const user = {
-        name,
-        email,
-        password,
-      };
       dispatch(registerUser(user));
     }
   };
   return (
-    <div className="register_bg">
-      <div className=" register_flex">
+    <div className="register_bg">   
         <div className="form-content">
           <div className="form_register p-4">
             {success ? (
@@ -57,83 +64,39 @@ const Register = () => {
                       <input
                         type="text"
                         placeholder="Tên tài khoản"
-                        {...register("name", {
-                          required: true,
-                          minLength: 4,
-                          maxLength: 16,
-                        })}
-                        value={name}
-                        onChange={(e) => {
-                          setName(e.target.value);
-                        }}
+                        {...register("name")}
                       />
                     </div>
-                    {errors.name?.type === "required" && (
-                      <p className="valid_error">Hãy nhập tên tài khoản</p>
-                    )}
-                    {errors.name?.type === "minLength" && (
-                      <p className="valid_error">Tên phải từ 4-16 ký tự</p>
-                    )}
-                    {errors.name?.type === "maxLength" && (
-                      <p className="valid_error">Tên phải từ 4-16 ký tự</p>
-                    )}
+                    <p className="valid_error">{errors.name?.message}</p>
                     <div className="input-box">
                       <input
                         type="text"
                         placeholder="Email"
-                        {...register("email", {
-                          required: true,
-                          pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        })}
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
+                        {...register("email")}
                       />
                     </div>
-                    {errors.email?.type === "required" && (
-                      <p className="valid_error">Hãy nhập Email</p>
-                    )}
-                    {errors.email?.type === "pattern" && (
-                      <p className="valid_error">Email k hợp lệ</p>
-                    )}
+                    <p className="valid_error">{errors.email?.message}</p>
                     <div className="input-box">
                       <input
                         type="password"
                         placeholder="Mật khẩu"
-                        {...register("password", {
-                          required: true,
-                          minLength: 4,
-                          maxLength: 16,
-                        })}
-                        value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
+                        {...register("password")}
                       />
                     </div>
-                    {errors.password?.type === "required" && (
-                      <p className="valid_error">Hãy nhập mật khẩu</p>
-                    )}
-                    {errors.password?.type === "minLength" && (
-                      <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>
-                    )}
-                    {errors.password?.type === "maxLength" && (
-                      <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>
-                    )}
+                    <p className="valid_error">{errors.password?.message}</p>
                     <div className="input-box">
                       <input
                         type="password"
                         placeholder="Xác nhận mật khẩu"
-                        {...register("cpassword", { required: true})} 
-                        value={cpassword}
-                        onChange={(e) => {
-                          setCpassword(e.target.value);
-                        }}
+                        {...register("cpassword")}
                       />
                     </div>
-                    {errors.cpassword?.type === 'required' && <p className="valid_error">Hãy nhập mật khẩu xác nhận</p>}
-                    {password !== cpassword && <p className="valid_error">Mật khâu không trùng khớp với nhau</p>}
+                    <p className="valid_error">{errors.cpassword?.message}</p>
+                    {/* {cpassword && (
+                      <p className="valid_error">
+                        Mật khâu không trùng khớp với nhau
+                      </p>
+                    )} */}
                     <div className="text mt-3 mb-3 ">
                       <a href="#">Quên mật khẩu?</a>
                     </div>
@@ -157,7 +120,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

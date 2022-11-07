@@ -41,6 +41,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    column-gap: 15px;
 }
 
 .app__navbar-login a {
@@ -114,8 +115,47 @@
 }
 
 .navbar__right {
-    margin-right: 0.5rem;
+    margin-right: 0.7rem;
 }
+
+.icon_cart{
+    cursor: pointer;
+    position: relative;
+    bottom: 2px
+}
+.badge_cart{
+    position: absolute;
+    right: 58px;
+    top: 12px;
+    background-color: var(--color-golden) !important;
+    color: black !important;
+    font-size: 11px;
+}
+
+.app__navbar_fixed {
+    position: fixed;
+    top: 0;
+    z-index: 10
+}
+.hamburger_Menu{
+    margin-left: 12px ;
+}
+.font_cart {
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.font_cart:hover {
+    color: #222222;
+    background-color:var(--color-crimson);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.badge_font_cart{
+    padding-bottom: 2px;
+    background-color: var(--color-golden) !important;
+    color: black  !important;
+   }
 
 @media screen and (min-width: 2000px) {
     .app__navbar-logo img {

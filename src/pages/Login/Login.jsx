@@ -1,34 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userActions";
 import { SubHeading } from "../../components";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import  Loading  from '../../components/Alert/Loading'
+import Loading from "../../components/Alert/Loading";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Email không hợp lệ")
+      .required("Hãy nhập Email"),
+    password: yup
+      .string()
+      .min(4, "Mật khẩu phải từ 4-12 ký tự")
+      .max(12, "Mật khẩu phải từ 4-12 ký tự")
+      .required("Hãy nhập mật khẩu"),
+  })
+  .required();
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.loginUserReducer);
   const { loading } = loginState;
-  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const login = (user) => {
+     dispatch(loginUser(user));
+  };
+
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
-      window.location.href='/'
+      window.location.href = "/";
     }
   }, []);
 
-  const login = () => {
-    console.log(errors,' ok')
-    const user = {
-      email,
-      password,
-    };
-    dispatch(loginUser(user));
-  };
   return (
     <div className="login_bg">
       <div className="login">
@@ -58,41 +75,28 @@ const Login = () => {
                     <input
                       type="text"
                       placeholder="Email"
-                      {...register("email", { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                      }}
-                      
+                      {...register("email")}
                     />
-                    
                   </div>
-                  {errors.email?.type === 'required' && <p className="valid_error">Hãy nhập Email</p>}
-                  {errors.email?.type === 'pattern' && <p className="valid_error">Email k hợp lệ</p>}
-                  
+                  <p className='valid_error'>{errors.email?.message}</p>
+
                   <div className="input-box">
                     <input
                       type="password"
                       placeholder="Mật khẩu"
-                      {...register("password", { required: true, minLength: 4, maxLength: 16 })} 
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
+                      {...register("password")}
                     />
                   </div>
-                  {errors.password?.type === 'required' && <p className="valid_error">Hãy nhập mật khẩu</p>}
-                  {errors.password?.type === 'minLength' && <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>}
-                  {errors.password?.type === 'maxLength' && <p className="valid_error">Mật khẩu phải từ 4-16 ký tự</p>}
+                  <p className='valid_error'>{errors.password?.message}</p>
                   <div className="text mt-3 mb-3 ">
                     <a href="/">Quên mật khẩu?</a>
                   </div>
 
-                  <button type="submit"
+                  <button
+                    type="submit"
                     className="button input-box custom__button "
-                   
                   >
-                   {loading ? <Loading/> : 'Đăng nhập' } 
+                    {loading ? <Loading /> : "Đăng nhập"}
                   </button>
                   <div className="text sign-up-text mb-4 ">
                     Bạn chưa có tài khoản ?{" "}

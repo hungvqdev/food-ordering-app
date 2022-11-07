@@ -28,7 +28,8 @@ import canada from '../assets/canada.png'
 import chicken from '../assets/chicken.png'
 import phomai from '../assets/phomai.png'
 import thitnguoi from '../assets/thitnguoi.png'
-
+import visa from '../assets/visa.png'
+import logopizza from '../assets/logo_pizza.png'
 
 const images = {
   bg,
@@ -60,7 +61,9 @@ const images = {
   canada,
   chicken,
   phomai,
-  thitnguoi
+  thitnguoi,
+  visa,
+  logopizza
 };
 
 export default images

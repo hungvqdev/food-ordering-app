@@ -8,28 +8,49 @@ import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Dropdown } from "react-bootstrap";
 import { logoutUser } from "../../actions/userActions";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
   return (
-    <nav className="app__navbar shadow-lg">
-      
+    <nav
+      className={`app__navbar shadow-lg ${
+        pathname === "/" ? "app__navbar_fixed" : ""
+      }`}
+    >
       <div className="app__navbar-logo">
-        <Link to="/"><img src={images.gericht} alt="app__logo" /></Link>
+        <Link to="/">
+        <img src={images.logopizza} alt="app__logo" style={{ width: "120px"}} />
+          <img src={images.gericht} alt="app__logo" />
+        </Link>
       </div>
       <div className="app__navbar-login">
+        <Link to="/cart" className="p__opensans font_cart border border-1 ">
+          Giỏ hàng{" "}
+          <Badge className="badge_font_cart">{cartState.cartItems.length}</Badge>
+        </Link>
         {currentUser ? (
           <Dropdown className="p__opensans app__navbar-dropdown">
             <Dropdown.Toggle>{currentUser.name}</Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Hồ Sơ</Dropdown.Item>
-              <Dropdown.Item  onClick={() => {dispatch(logoutUser())}}>Đăng xuất</Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="/orders">Đơn hàng</Link>
+              </Dropdown.Item>
+
+              <Dropdown.Item
+                onClick={() => {
+                  dispatch(logoutUser());
+                }}
+              >
+                Đăng xuất
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         ) : (
@@ -37,28 +58,22 @@ const Navbar = () => {
             Đăng nhập
           </Link>
         )}
-
-        <div />
-        <Link to="/cart" className="p__opensans">
-          Giỏ hàng {cartState.cartItems.length}
-        </Link>
       </div>
       <div className="app__navbar-smallscreen">
         <Link to="/cart" className="navbar__right">
           <GiShoppingCart
             color="#fff"
             fontSize={30}
-            className=" slide-bottom"
+            className=" slide-bottom icon_cart"
           />
-          <Badge color="danger" position="top-start" shape="rounded-pill">
-            {cartState.cartItems.length}
-          </Badge>
+          <Badge className="badge_cart">{cartState.cartItems.length}</Badge>
         </Link>
         {currentUser ? (
           <GiHamburgerMenu
             color="#fff"
             fontSize={27}
             onClick={() => setToggleMenu(true)}
+            style={{ marginLeft: "12px" }}
           />
         ) : (
           <Link to="/login" className="navbar__right">
@@ -74,12 +89,16 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#menu" onClick={() => setToggleMenu(false)}>
-                  Hồ sơ
-                </a>
+                <Link to="/orders" onClick={() => setToggleMenu(false)}>
+                  Đơn hàng
+                </Link>
               </li>
               <li>
-                <div onClick={() => {dispatch(logoutUser())}}>
+                <div
+                  onClick={() => {
+                    dispatch(logoutUser());
+                  }}
+                >
                   Đăng xuất
                 </div>
               </li>

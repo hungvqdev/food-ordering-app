@@ -4,7 +4,7 @@ import './Alert.css'
 const Loading = () => {
   return (
     <div className="spinner-border m-auto" role="status">
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only"></span>
     </div>
   )
 }
