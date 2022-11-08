@@ -22,7 +22,7 @@ const Footer = () => (
         <h1 className="app__footer-headtext">Liên hệ với chúng tôi</h1>
         <p className="p__opensans">127 Văn Cao, Liễu Giai, Ba Đình, Hà Nội</p>
         <p className="p__opensans">+84 7666 8xxx</p>
-        <img src={images.spoon} className="spoon__img" style={{ marginTop: 15 }} />
+        <img src={images.spoon} className="spoon__img" style={{ marginTop: 15 }} alt=""/>
         <div className="app__footer-links_icons"> 
           <a href="https://www.facebook.com/hungvq.84/"><FiFacebook /></a>
           <a href="https://github.com/hungvqdev/food-ordering-app"><FiGithub/></a>
