@@ -10,6 +10,7 @@ const Menu = () => {
   const pizzasState = useSelector((state) => state.getAllPizzasReducer);
   const { pizzas, error, loading } = pizzasState;
 
+
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);

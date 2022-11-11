@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../actions/userActions";
-import { SubHeading } from "../../components";
+import { Navbar, SubHeading } from "../../components";
 import { FormSuccess } from "../../components/Alert/Success";
 import "./Register.css";
 import { Link } from "react-router-dom";
@@ -43,7 +43,9 @@ const Register = () => {
     }
   };
   return (
-    <div className="register_bg">   
+    <>
+      <Navbar/>
+      <div className="register_bg">   
         <div className="form-content">
           <div className="form_register p-4">
             {success ? (
@@ -119,7 +121,8 @@ const Register = () => {
             )}
           </div>
         </div>
-      </div>
+    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userActions";
-import { SubHeading } from "../../components";
+import { Navbar, SubHeading } from "../../components";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Alert/Loading";
@@ -47,6 +47,8 @@ const Login = () => {
   }, []);
 
   return (
+    <>
+    <Navbar/>
     <div className="login_bg">
       <div className="login">
         <div className="content">
@@ -111,6 +113,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
+    
   );
 };
 

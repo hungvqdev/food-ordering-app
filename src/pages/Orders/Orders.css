@@ -1,6 +1,6 @@
 .orders_bg {
     background: url('../../assets/bg.png');
-    height: 100%;
+    min-height: calc(100vh - 75px);
   }
 
   .orders_bg_success {

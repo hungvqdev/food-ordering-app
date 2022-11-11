@@ -1,31 +1,29 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Cart.css";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { addToCart, deleteFromCart } from "../../actions/cartActions";
-import { SubHeading } from "../../components";
+import { Navbar, SubHeading } from "../../components";
 import Checkout from "../../components/Checkout/Checkout";
 import { Link } from "react-router-dom";
-import { OrderSuccess } from "../../components/Alert/Success";
 
 const Cart = () => {
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
   const userState = useSelector((state) => state.loginUserReducer.currentUser);
   var totalCart = cartItems.reduce((x, item) => x + item.price, 0);
-  const orderState = useSelector((state) => state.placeOrderReducer);
-  const { success } = orderState;
   const dispatch = useDispatch();
 
-  
   if (cartItems.length > 0) {
     return (
-      <div className="cart_bg p-5">
-        <div className="container">
-          <SubHeading />
-          <div className="cart_p " style={{ fontSize: "27px" }}>
-            Giỏ hàng của bạn{" "}
-          </div>
+      <>
+        <Navbar />
+        <div className="cart_bg p-5">
+          <div className="container">
+            <SubHeading />
+            <div className="cart_p " style={{ fontSize: "27px" }}>
+              Giỏ hàng của bạn{" "}
+            </div>
             <div className="row justify-content-center ">
               <div className="col-12">
                 {cartItems.map((item) => {
@@ -118,24 +116,28 @@ const Cart = () => {
                   <Checkout totalCart={totalCart} />
                 )}
               </div>
-            </div>    
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return (
-      <div className="cart_bg p-5">
-        <div className="container">
-          <div className="cart_p ">
-            Rất tiếc!!! Bạn không có sản phẩm ở đây.
+      <>
+        <Navbar />
+        <div className="cart_bg p-5">
+          <div className="container">
+            <div className="cart_p ">
+              Rất tiếc!!! Bạn không có sản phẩm ở đây.
+            </div>
+            <a href="/#menu">
+              <button className="custom__button mt-2">
+                Hãy cùng khám phá thực đơn
+              </button>
+            </a>
           </div>
-          <a href="/#menu">
-            <button className="custom__button mt-2">
-              Hãy cùng khám phá thực đơn
-            </button>
-          </a>
         </div>
-      </div>
+      </>
     );
   }
 };
