@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getAllPizzas } from "../../../actions/pizzaActions";
+import { getAllPizzas } from "../../../actions/pizzaActions";
 import { Topbar, Sidebar, Loading, Error } from "../../../components";
 import "./Productlist.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { Link } from "react-router-dom";
+
 
 const Productlist = () => {
   const dispatch = useDispatch();
@@ -15,10 +17,13 @@ const Productlist = () => {
     dispatch(getAllPizzas());
   }, [dispatch]);
 
-  const handleDelete = (productId) => { 
-    console.log(productId)
-    dispatch(deleteProduct(productId));
-    dispatch(getAllPizzas());
+  const handleDelete = async (productId) => { 
+    try {
+      await axios.delete(`http://localhost:8000/api/admin/deleteproduct/${productId}`)
+      dispatch(getAllPizzas());
+    } catch (error) {
+       console.log(error)
+    }  
   };
 
   const handleSelectDelete = (productId) => {
@@ -74,7 +79,7 @@ const Productlist = () => {
         <div className="d-flex justify-content-between align-items-center">
         <h1 className="headtext__admin">Danh sách sản phẩm</h1>
         <div>
-        <Link to="/add-product">
+        <Link to="/admin/add-product">
             <button className="productAddButton" style={{marginRight: '10px'}} >Thêm sản phẩm</button>
           </Link>
           <button className="productAddButton" style={{marginRight: '40px', backgroundColor:'red'}} onClick={() => handleSelectDelete()}>Xóa mục chọn</button>

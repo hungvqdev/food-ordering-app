@@ -17,40 +17,59 @@ export const getAllPizzasReducer = (state={pizzas: []}, action ) => {
     }
 }
 
-export  const editProductReducer = (state={}, action ) => {
-    switch( action.type )
-    {
-        case 'EDIT_PRODUCT_REQUEST': return {
-            loading: true
-        }
-        case 'EDIT_PRODUCT_SUCCESS': return {
-            loading: false,
-            success: true
-        }
-        case 'EDIT_PRODUCT_FAILED': return {
+// export  const editProductReducer = (state={}, action ) => {
+//     switch( action.type )
+//     {
+//         case 'EDIT_PRODUCT_REQUEST': return {
+//             loading: true
+//         }
+//         case 'EDIT_PRODUCT_SUCCESS': return {
+//             loading: false,
+//             success: true
+//         }
+//         case 'EDIT_PRODUCT_FAILED': return {
             
-            loading: false,
-            error: action.payload 
-        }
-        default: return state
-    }
-}
+//             loading: false,
+//             error: action.payload 
+//         }
+//         default: return state
+//     }
+// }
 
-export  const deleteProductReducer = (state={}, action ) => {
-    switch( action.type )
-    {
-        case 'DELETE_PRODUCT_REQUEST': return {
-            loading: true
-        }
-        case 'DELETE_PRODUCT_SUCCESS': return {
-            loading: false,
-            success: true
-        }
-        case 'DELETE_PRODUCT_FAILED': return {
+// export  const deleteProductReducer = (state={}, action ) => {
+//     switch( action.type )
+//     {
+//         case 'DELETE_PRODUCT_REQUEST': return {
+//             loading: true
+//         }
+//         case 'DELETE_PRODUCT_SUCCESS': return {
+//             loading: false,
+//             success: true
+//         }
+//         case 'DELETE_PRODUCT_FAILED': return {
             
-            loading: false,
-            error: action.payload 
-        }
-        default: return state
-    }
-}
+//             loading: false,
+//             error: action.payload 
+//         }
+//         default: return state
+//     }
+// }
+
+// export  const addProductReducer = (state={}, action ) => {
+//     switch( action.type )
+//     {
+//         case 'ADD_PRODUCT_REQUEST': return {
+//             loading: true
+//         }
+//         case 'ADD_PRODUCT_SUCCESS': return {
+//             loading: false,
+//             success: true
+//         }
+//         case 'ADD_PRODUCT_FAILED': return {
+            
+//             loading: false,
+//             error: action.payload 
+//         }
+//         default: return state
+//     }
+// }
