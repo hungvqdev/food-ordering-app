@@ -6,12 +6,14 @@ const app = express()
 
 const pizzaRouter = require('./routes/pizza')
 const authRouter = require('./routes/auth')
+const adminRouter = require('./routes/admin')
 
 app.use(cors());
 app.use(express.json())
 
 app.use('/api/pizza/', pizzaRouter)
 app.use('/api/users/', authRouter)
+app.use('/api/admin/', adminRouter)
 
 app.get('/', (req, res) => {
     res.send('server')
