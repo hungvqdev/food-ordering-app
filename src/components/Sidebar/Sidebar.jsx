@@ -15,21 +15,21 @@ export default function Sidebar() {
                 Home
               </li>
             </Link>
-            <Link to="/" className="link">
+            <Link to="/admin/user" className="link">
               <li className="sidebarListItem mt-3">
                 <SlUser className="sidebarIcon" />
                 User
               </li>
             </Link>
 
-            <Link to="/" className="link">
+            <Link to="/admin/products" className="link">
               <li className="sidebarListItem mt-3">
                 <SlBriefcase className="sidebarIcon" />
                 Product
               </li>
             </Link>
 
-            <Link to="/" className="link">
+            <Link to="/admin/orders" className="link">
               <li className="sidebarListItem mt-3">
                 <SlHandbag className="sidebarIcon" />
                 Order

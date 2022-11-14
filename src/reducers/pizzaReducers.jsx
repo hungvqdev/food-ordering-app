@@ -16,3 +16,41 @@ export const getAllPizzasReducer = (state={pizzas: []}, action ) => {
         default: return state
     }
 }
+
+export  const editProductReducer = (state={}, action ) => {
+    switch( action.type )
+    {
+        case 'EDIT_PRODUCT_REQUEST': return {
+            loading: true
+        }
+        case 'EDIT_PRODUCT_SUCCESS': return {
+            loading: false,
+            success: true
+        }
+        case 'EDIT_PRODUCT_FAILED': return {
+            
+            loading: false,
+            error: action.payload 
+        }
+        default: return state
+    }
+}
+
+export  const deleteProductReducer = (state={}, action ) => {
+    switch( action.type )
+    {
+        case 'DELETE_PRODUCT_REQUEST': return {
+            loading: true
+        }
+        case 'DELETE_PRODUCT_SUCCESS': return {
+            loading: false,
+            success: true
+        }
+        case 'DELETE_PRODUCT_FAILED': return {
+            
+            loading: false,
+            error: action.payload 
+        }
+        default: return state
+    }
+}

@@ -10,6 +10,8 @@ import OrderSuccess from "./pages/Orders/OrderSuccess";
 import Homepage from "./pages/Homepage/Homepage";
 import Home from "./pages/Admin/Home";
 import Productlist from "./pages/Admin/Listproduct/Productlist";
+import Editproduct from "./pages/Admin/Editproduct/Editproduct";
+
 
 
 function App() {
@@ -25,7 +27,8 @@ function App() {
           <Route path="/orders" exact component={Orders} />
           <Route path="/ordersuccess" exact component={OrderSuccess} />
           <Route path="/admin" exact component={Home} />
-          <Route path="/admin/product-list" exact component={Productlist} />
+          <Route path="/admin/products" exact component={Productlist} />
+          <Route path="/admin/products/:productId" exact component={Editproduct} />
         </Switch>
       </BrowserRouter>
     </div>

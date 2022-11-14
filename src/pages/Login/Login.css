@@ -113,7 +113,7 @@
    text-decoration: underline;
  }
 
- input[type=text], input[type=password] {
+ .input-box input[type=text], input[type=password] {
   background: url('../../assets/bg.png') !important;
   color: white;
   opacity: 85%;

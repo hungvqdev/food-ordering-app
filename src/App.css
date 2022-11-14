@@ -123,6 +123,15 @@
   padding-left: 15px;
 }
 
+
+.headtext__admin {
+  font-family: var(--font-base);
+  color: black;
+  font-size: 40px;
+  line-height: 63.2px;
+  letter-spacing: 0.04em;
+}
+
 @media screen and (min-width: 2000px) {
   .custom__button,
   .p__cormorant {

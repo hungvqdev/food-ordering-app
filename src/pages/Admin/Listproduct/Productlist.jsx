@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPizzas } from "../../../actions/pizzaActions";
+import { deleteProduct, getAllPizzas } from "../../../actions/pizzaActions";
 import { Topbar, Sidebar, Loading, Error } from "../../../components";
 import "./Productlist.css";
 import { DataGrid } from "@material-ui/data-grid";
@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 const Productlist = () => {
   const dispatch = useDispatch();
-
   const pizzasState = useSelector((state) => state.getAllPizzasReducer);
   const { pizzas, error, loading } = pizzasState;
 
@@ -16,13 +15,15 @@ const Productlist = () => {
     dispatch(getAllPizzas());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    // setData(data.filter((item) => item._id !== id));
-    console.log(id)
+  const handleDelete = (productId) => { 
+    console.log(productId)
+    dispatch(deleteProduct(productId));
+    dispatch(getAllPizzas());
   };
 
-  const handleSelectDelete = (id) => {
-    console.log(id)
+  const handleSelectDelete = (productId) => {
+      console.log(productId)
+
   }
 
   const columns = [
@@ -47,7 +48,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row._id}>
+            <Link to={"/admin/products/" + params.row._id}>
               <button className="productListEdit">Sửa</button>
             </Link>
             <button
@@ -71,12 +72,12 @@ const Productlist = () => {
         <div className="productList mt-5">
         
         <div className="d-flex justify-content-between align-items-center">
-        <h1 className="headtext__product">Danh sách sản phẩm</h1>
+        <h1 className="headtext__admin">Danh sách sản phẩm</h1>
         <div>
         <Link to="/add-product">
-            <button className="productAddButton" style={{marginRight: '10px'}} onClick={() => handleSelectDelete()}>Thêm sản phẩm</button>
+            <button className="productAddButton" style={{marginRight: '10px'}} >Thêm sản phẩm</button>
           </Link>
-          <button className="productAddButton" style={{marginRight: '40px', backgroundColor:'red'}}>Xóa mục chọn</button>
+          <button className="productAddButton" style={{marginRight: '40px', backgroundColor:'red'}} onClick={() => handleSelectDelete()}>Xóa mục chọn</button>
           
         </div>
         
@@ -93,6 +94,7 @@ const Productlist = () => {
               columns={columns}
               pageSize={8}
               checkboxSelection
+              onSelectionModelChange={item => handleSelectDelete(item)}
             />
           )}
         </div>
