@@ -1,12 +1,22 @@
 const Pizza = require('../models/pizza')
+const Order = require('../models/order');
 const stripe = require('stripe')('sk_test_51LleMUFld5FTAPzbhy8Nl9evH4hbj1JFRfRxvYz7q4GeQYrlykHlxKfy55Sn82ZPwcg5UdizkkGI9pq7wcEuVmP300HcEkVw4j')
 const { v4: uuidv4 } = require('uuid');
-const Order = require('../models/order')
+
 
 exports.getPizza = async (req, res, next) => {
     try {
         const pizzas = await Pizza.find({})
         res.send(pizzas)
+    } catch (error) {
+        return res.status(400).json({ message: error})
+    }
+}
+
+exports.getOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.find({}).sort({"createdAt":-1})
+        res.send(orders)
     } catch (error) {
         return res.status(400).json({ message: error})
     }

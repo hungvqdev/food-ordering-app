@@ -6,5 +6,6 @@ const adminController = require('../controllers/admin')
 router.delete('/deleteproduct/:prodId', adminController.postDeleteProduct)
 router.patch('/editproduct/:prodId', adminController.postEditProduct)
 router.post('/addproduct', adminController.postAddProduct)
+router.patch('/delivered/:orderId', adminController.isDeliveredOrder)
 
 module.exports = router

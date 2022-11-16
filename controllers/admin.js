@@ -1,4 +1,6 @@
 const Pizza = require('../models/pizza')
+const Order = require('../models/order')
+
 
 
 exports.postDeleteProduct = async (req, res, next) => {
@@ -38,5 +40,18 @@ exports.postAddProduct = async (req, res, next) => {
         res.send(newProduct)
     } catch (error) {
         return res.status(400).json({ message: error})
+    }
+}
+
+
+exports.isDeliveredOrder = async (req, res, next) => {
+
+    const { orderId } = req.params
+
+    try {
+        const order = await Order.findByIdAndUpdate(orderId, {isDelivered: true}, {new: true})
+        res.send(order)
+    } catch (error) {
+        return res.status(400).json({ messgage: error})
     }
 }
