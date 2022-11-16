@@ -1,0 +1,9 @@
+.ordersItem{
+    display: flex;
+    align-items: center;
+    font-family: var(--font-alt);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 25px;
+  font-size: 15px;
+}

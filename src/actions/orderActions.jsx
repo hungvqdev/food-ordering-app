@@ -33,3 +33,16 @@ export const getUserOrders = () => async (dispatch, getState) => {
         dispatch({type: 'GET_USER_ORDERS_FAILED', payload: error})
     }
 }
+
+
+export const getAllOrder = () => async dispatch => {
+  dispatch({type: 'GET_ORDERS_REQUEST'})
+
+  try {
+      const response = await axios.get('http://localhost:8000/api/pizza/allorder')
+      console.log(response)
+      dispatch({type: 'GET_ORDERS_SUCCESS', payload: response.data})
+  } catch (error) {
+      dispatch({type: 'GET_ORDERS_FAILED', payload: error})
+  }
+}

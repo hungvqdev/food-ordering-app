@@ -12,6 +12,8 @@ import Home from "./pages/Admin/Home";
 import Productlist from "./pages/Admin/Listproduct/Productlist";
 import Editproduct from "./pages/Admin/Editproduct/Editproduct";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
+import OrdersAdmin from "./pages/Admin/OrdersAdmin/OrdersAdmin";
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
           <Route path="/admin/products" exact component={Productlist} />
           <Route path="/admin/products/:productId" exact component={Editproduct} />
           <Route path="/admin/add-product" exact component={AddProduct} />
+          <Route path="/admin/orders" exact component={OrdersAdmin} />
         </Switch>
       </BrowserRouter>
     </div>

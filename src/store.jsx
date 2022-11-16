@@ -4,7 +4,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllPizzasReducer} from "./reducers/pizzaReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducers";
-import { getUserOrdersReducer, placeOrderReducer } from "./reducers/orderReducers";
+import { getAllOrdersReducer, getUserOrdersReducer, placeOrderReducer } from "./reducers/orderReducers";
+
 
 const finalReducer = combineReducers({
     getAllPizzasReducer: getAllPizzasReducer,
@@ -12,7 +13,8 @@ const finalReducer = combineReducers({
     registerUserReducer: registerUserReducer,
     loginUserReducer: loginUserReducer,
     placeOrderReducer: placeOrderReducer,
-    getUserOrdersReducer: getUserOrdersReducer
+    getUserOrdersReducer: getUserOrdersReducer,
+    getAllOrdersReducer: getAllOrdersReducer
 
 })
 
