@@ -2,9 +2,11 @@ const User = require('../models/user')
 
 exports.postRegister = async (req, res, next) => {
 
-    const { name, email, password} = req.body
 
-    const newUser = new User({name, email, password})
+    console.log(req.body)
+    const { name, email, password, avatar} = req.body
+
+    const newUser = new User({name, email, password, avatar})
 
     try {
         newUser.save()
@@ -35,5 +37,15 @@ exports.postLogin = async (req, res, next) => {
         
     } catch (error) {
         return res.status(400).json({ messgage: error})
+    }
+}
+
+exports.getUsers = async (req, res, next) => {
+    
+    try {
+        const users = await User.find({})
+        res.send(users)
+    } catch (error) {
+        return res.status(400).json({ message: error})
     }
 }
