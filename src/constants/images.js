@@ -30,6 +30,7 @@ import phomai from '../assets/phomai.png'
 import thitnguoi from '../assets/thitnguoi.png'
 import visa from '../assets/visa.png'
 import logopizza from '../assets/logo_pizza.png'
+import avatar from '../assets/avatar.png'
 
 const images = {
   bg,
@@ -63,7 +64,8 @@ const images = {
   phomai,
   thitnguoi,
   visa,
-  logopizza
+  logopizza,
+  avatar
 };
 
 export default images

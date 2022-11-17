@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../actions/userActions";
+import { getAllUsers, registerUser } from "../../actions/userActions";
 import { Navbar, SubHeading } from "../../components";
 import { FormSuccess } from "../../components/Alert/Success";
 import "./Register.css";
@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { images } from "../../constants";
+
 
 const schema = yup
   .object({
@@ -23,10 +25,17 @@ const schema = yup
   .required();
 
 const Register = () => {
-  console.log(schema);
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.registerUserReducer);
+  const usersState = useSelector((state) => state.getAllUsersReducer);
+  const { users } = usersState;
   const { success } = registerState;
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
+  console.log(users)
   const {
     register,
     handleSubmit,
@@ -36,8 +45,18 @@ const Register = () => {
   });
   useForm();
 
+  const  [errorCpass, setErrorCpass ] = useState('')
+  const  [errorEmail, setErrorEmail ] = useState('')
+
   const signup = (user) => {
-    if (user.password !== user.cpassword) {
+
+    const userEmail = users.find(i => i.email === user.email)
+
+    if(userEmail){
+      setErrorEmail('Email đã có người sử dụng')
+    }
+    else if (user.password !== user.cpassword) {
+      setErrorCpass('Mât khẩu không khớp')
     } else {
       dispatch(registerUser(user));
     }
@@ -78,6 +97,9 @@ const Register = () => {
                       />
                     </div>
                     <p className="valid_error">{errors.email?.message}</p>
+                    <p className="valid_error ">
+                        {errorEmail}
+                    </p>
                     <div className="input-box">
                       <input
                         type="password"
@@ -86,6 +108,7 @@ const Register = () => {
                       />
                     </div>
                     <p className="valid_error">{errors.password?.message}</p>
+                   
                     <div className="input-box">
                       <input
                         type="password"
@@ -94,13 +117,20 @@ const Register = () => {
                       />
                     </div>
                     <p className="valid_error">{errors.cpassword?.message}</p>
-                    {/* {cpassword && (
-                      <p className="valid_error">
-                        Mật khâu không trùng khớp với nhau
+                   
+                      <p className="valid_error ">
+                        {errorCpass}
                       </p>
-                    )} */}
+
+                      <input
+                        type="hidden"
+                        placeholder="Mật khẩu"
+                        {...register("avatar")}
+                        defaultValue={images.avatar}
+                      />
+
                     <div className="text mt-3 mb-3 ">
-                      <a href="#">Quên mật khẩu?</a>
+                      <a href="/">Quên mật khẩu?</a>
                     </div>
 
                     <button

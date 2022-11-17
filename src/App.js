@@ -13,6 +13,7 @@ import Productlist from "./pages/Admin/Listproduct/Productlist";
 import Editproduct from "./pages/Admin/Editproduct/Editproduct";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import OrdersAdmin from "./pages/Admin/OrdersAdmin/OrdersAdmin";
+import Users from "./pages/Admin/Users/Users";
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/admin/products/:productId" exact component={Editproduct} />
           <Route path="/admin/add-product" exact component={AddProduct} />
           <Route path="/admin/orders" exact component={OrdersAdmin} />
+          <Route path="/admin/users" exact component={Users} />
         </Switch>
       </BrowserRouter>
     </div>

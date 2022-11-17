@@ -1,11 +1,12 @@
 import axios from "axios"
+import { images } from "../constants"
 
 
 export const registerUser = (user) => async dispatch => {
     dispatch({type: 'USER_REGISTER_REQUEST'})
 
     try {
-        const response = await axios.post('http://localhost:8000/api/users/register', user)
+        const response = await axios.post('http://localhost:8000/api/users/register', user )
         console.log(response)
         dispatch({type: 'USER_REGISTER_SUCCESS'})
         
@@ -33,4 +34,16 @@ export const logoutUser = (user) => async dispatch => {
     localStorage.removeItem('currentUser')
         window.location.href='/'
 
+}
+
+export const getAllUsers = () => async dispatch => {
+    dispatch({type: 'GET_USERS_REQUEST'})
+
+    try {
+        const response = await axios.get('http://localhost:8000/api/users/allusers')
+        console.log(response)
+        dispatch({type: 'GET_USERS_SUCCESS', payload: response.data})
+    } catch (error) {
+        dispatch({type: 'GET_USERS_FAILED', payload: error})
+    }
 }
