@@ -132,6 +132,14 @@
   letter-spacing: 0.04em;
 }
 
+.avatarBar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 7px;
+}
+
 @media screen and (min-width: 2000px) {
   .custom__button,
   .p__cormorant {

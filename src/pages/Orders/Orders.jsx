@@ -86,8 +86,9 @@ const Orders = () => {
                         <span>Thẻ quốc tế (Visa, Master ...)</span>{" "}
                       </p>
                       <p>
-                        Tổng tiền: <span>{order.orderAmount}.000đ</span>{" "}
+                        Tổng tiền: <span>{order.orderAmount}.000đ</span>{" "} 
                       </p>
+                      <p>Trạng thái đơn hàng: {order.isDelivered === false ? <div className="status_order border bg-warning">Đang giao đến</div> : <div className="status_order border bg-success text-white">Đã hoàn thành</div>}</p>
                     </div>
                   </div>
                 );

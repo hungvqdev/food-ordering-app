@@ -79,7 +79,13 @@
 #info_order span {
   font-style: italic;
 }
-
+.status_order{
+  display: inline;
+  border-radius: 7px;
+  padding: 4px 7px;
+  font-size: 14px;
+  color: black;
+}
  @media screen and (max-width: 768px) {
 
   .order_border_top {

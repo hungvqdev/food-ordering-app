@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     background: #222222;
-    padding: 1rem 2rem;
+    padding: 11.5px 35px;
     /* position: fixed;
     top: 0; */
 }
@@ -41,7 +41,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    column-gap: 15px;
 }
 
 .app__navbar-login a {
@@ -62,6 +61,11 @@
 
 .app__navbar-dropdown button {
     background-color: #222222 ;
+    border: none ;
+}
+
+.app__navbar-dropdown button:active {
+    background-color: #222222 !important;
     border: none ;
 }
 

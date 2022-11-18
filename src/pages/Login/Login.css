@@ -3,7 +3,7 @@
  .login_bg {
     background: linear-gradient(90deg, #000, transparent 70%), url(../../assets/pizza-bg.jpg) no-repeat;
     background-size: cover;
-    height: calc(100vh - 75px);
+    min-height: calc(100vh - 75px);
     opacity: 85%;
   }
 

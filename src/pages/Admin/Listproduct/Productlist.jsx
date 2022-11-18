@@ -26,10 +26,13 @@ const Productlist = () => {
     }  
   };
 
-  const handleSelectDelete = (productId) => {
-      console.log(productId)
-
+  const handleSelect = (productId) => {    
+      
   }
+
+const handleSelectDelete = () => {
+
+}
 
   const columns = [
     { field: "_id", headerName: "Mã sản phẩm", width: 250 },
@@ -99,7 +102,7 @@ const Productlist = () => {
               columns={columns}
               pageSize={8}
               checkboxSelection
-              onSelectionModelChange={item => handleSelectDelete(item)}
+              onSelectionModelChange={item => handleSelect(item)}
             />
           )}
         </div>

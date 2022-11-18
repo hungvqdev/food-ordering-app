@@ -36,14 +36,22 @@ const Navbar = () => {
           <Badge className="badge_font_cart">{cartState.cartItems.length}</Badge>
         </Link>
         {currentUser ? (
-          <Dropdown className="p__opensans app__navbar-dropdown">
-            <Dropdown.Toggle>{currentUser.name}</Dropdown.Toggle>
-
+          <Dropdown className=" app__navbar-dropdown">
+            
+            <Dropdown.Toggle>{currentUser.name} <img
+                src={currentUser.avatar}
+                alt=""
+                className="avatarBar border"
+              /></Dropdown.Toggle>
+            
             <Dropdown.Menu>
-              <Dropdown.Item>
-                <Link to="/orders">Đơn hàng</Link>
+            <Dropdown.Item  as={Link} to="/user">
+                Thông tin cá nhân
               </Dropdown.Item>
-
+              <Dropdown.Item  as={Link} to="/orders">
+                Theo dõi đơn hàng
+              </Dropdown.Item>
+              <Dropdown.Divider />
               <Dropdown.Item
                 onClick={() => {
                   dispatch(logoutUser());
