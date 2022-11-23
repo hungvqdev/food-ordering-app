@@ -68,7 +68,7 @@ exports.postOrder = async (req, res, next) => {
 exports.getUserOrders = async (req, res, next) => {
     const {userId} = req.body
     try {
-        const orders = await Order.find({userId: userId})
+        const orders = await Order.find({userId: userId}).sort({"createdAt":-1})
         res.send(orders)
     } catch (error) {
         return res.status(400).json({ message: error})

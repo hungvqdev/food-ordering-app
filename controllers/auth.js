@@ -27,6 +27,8 @@ exports.postLogin = async (req, res, next) => {
             const currentUser = {
                 name: user[0].name,
                 email: user[0].email,
+                avatar: user[0].avatar,
+                phone: user[0].phone,
                 isAdmin: user[0].isAdmin,
                 _id: user[0]._id
             }
