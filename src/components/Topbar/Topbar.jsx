@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Topbar.css";
 import { SlBell } from "react-icons/sl";
 import { images } from "../../constants";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../actions/userActions";
+import { getAllUsers, logoutUser } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.loginUserReducer);
+  const usersState = useSelector((state) => state.getAllUsersReducer);
   const { currentUser } = userState;
+  const { users } = usersState;
 
-  console.log(currentUser, " topbva");
+  const userInfo = users.find(item => item._id === currentUser._id)
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -31,9 +37,9 @@ const Topbar = () => {
 
           <Dropdown>
             <Dropdown.Toggle id="dropdown-button-dark-example1" variant="white">
-              <span className="userTopbar">{currentUser.name}</span>{" "}
+              <span className="userTopbar">{userInfo?.name}</span>{" "}
               <img
-                src={currentUser.avatar}
+                src={userInfo?.avatar}
                 alt=""
                 className="avatarBar border"
               />

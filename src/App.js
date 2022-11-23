@@ -14,7 +14,7 @@ import Editproduct from "./pages/Admin/Editproduct/Editproduct";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import OrdersAdmin from "./pages/Admin/OrdersAdmin/OrdersAdmin";
 import Users from "./pages/Admin/Users/Users";
-
+import User from "./pages/User/User";
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
           <Route path="/cart" exact component={Cart} />
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
+          <Route path="/user" exact component={User} />
           <Route path="/orders" exact component={Orders} />
           <Route path="/ordersuccess" exact component={OrderSuccess} />
           <Route path="/admin" exact component={Home} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
@@ -7,7 +7,7 @@ import images from "../../constants/images";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Dropdown } from "react-bootstrap";
-import { logoutUser } from "../../actions/userActions";
+import { getAllUsers, logoutUser } from "../../actions/userActions";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -17,7 +17,15 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
+  const usersState = useSelector((state) => state.getAllUsersReducer);
   const { currentUser } = userState;
+  const { users } = usersState;
+
+  const userInfo = users.find(item => item._id === currentUser._id)
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
   return (
     <nav
       className={`app__navbar shadow-lg ${
@@ -38,8 +46,8 @@ const Navbar = () => {
         {currentUser ? (
           <Dropdown className=" app__navbar-dropdown">
             
-            <Dropdown.Toggle>{currentUser.name} <img
-                src={currentUser.avatar}
+            <Dropdown.Toggle>{userInfo?.name} <img
+                src={userInfo?.avatar}
                 alt=""
                 className="avatarBar border"
               /></Dropdown.Toggle>
@@ -62,7 +70,7 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          <Link to="/login" className="p__opensans">
+          <Link to="/login" className="p__opensans" style={{marginLeft: '24px'}}>
             Đăng nhập
           </Link>
         )}

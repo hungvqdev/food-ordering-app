@@ -6,6 +6,7 @@ import { Topbar, Sidebar, Loading, Error } from "../../../components";
 import "./Productlist.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 const Productlist = () => {
@@ -26,12 +27,18 @@ const Productlist = () => {
     }  
   };
 
+  const [itemId, setItemId] = useState()
+
   const handleSelect = (productId) => {    
-      
+    setItemId(productId)
   }
-
-const handleSelectDelete = () => {
-
+const handleSelectDelete = async () => {
+  try {
+    await axios.post('http://localhost:8000/api/admin/deleteselect', itemId)
+    dispatch(getAllPizzas());
+  } catch (error) {
+     console.log(error)
+  }  
 }
 
   const columns = [
