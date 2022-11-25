@@ -1,7 +1,7 @@
 import "./App.css";
 import bootstrap from "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Cart from "./pages/Cart/Cart";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -19,6 +19,8 @@ import User from "./pages/User/User";
 
 function App() {
 
+  var userData = JSON.parse(localStorage.getItem('currentUser'))
+  
   return (
     <div className="App">      
       <BrowserRouter>  
@@ -27,15 +29,31 @@ function App() {
           <Route path="/cart" exact component={Cart} />
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
-          <Route path="/user" exact component={User} />
-          <Route path="/orders" exact component={Orders} />
+          <Route path="/user" exact render={() => {
+            return userData ? <User/> : <Redirect to='/login'/>
+          }} />
+          <Route path="/orders" exact render={() => {
+            return userData ? <Orders/> : <Redirect to='/login'/>
+          }} />
           <Route path="/ordersuccess" exact component={OrderSuccess} />
-          <Route path="/admin" exact component={Home} />
-          <Route path="/admin/products" exact component={Productlist} />
-          <Route path="/admin/products/:productId" exact component={Editproduct} />
-          <Route path="/admin/add-product" exact component={AddProduct} />
-          <Route path="/admin/orders" exact component={OrdersAdmin} />
-          <Route path="/admin/users" exact component={Users} />
+          <Route path="/admin" exact render={() => {
+            return userData && userData.isAdmin === true ? <Home/> : <Redirect to='/'/>
+          }} />
+          <Route path="/admin/products" exact render={() => {
+            return userData && userData.isAdmin === true ? <Productlist/> : <Redirect to='/'/>
+          }}  />
+          <Route path="/admin/products/:productId" exact render={() => {
+            return userData && userData.isAdmin === true ? <Editproduct/> : <Redirect to='/'/>
+          }} />
+          <Route path="/admin/add-product" exact render={() => {
+            return userData && userData.isAdmin === true ? <AddProduct/> : <Redirect to='/'/>
+          }} />
+          <Route path="/admin/orders" exact render={() => {
+            return userData && userData.isAdmin === true ? <OrdersAdmin/> : <Redirect to='/'/>
+          }} />
+          <Route path="/admin/users" exact render={() => {
+            return userData && userData.isAdmin === true ? <Users/> : <Redirect to='/'/>
+          }} />
         </Switch>
       </BrowserRouter>
     </div>

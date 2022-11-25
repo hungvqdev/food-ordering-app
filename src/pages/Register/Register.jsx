@@ -35,7 +35,6 @@ const Register = () => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  console.log(users)
   const {
     register,
     handleSubmit,

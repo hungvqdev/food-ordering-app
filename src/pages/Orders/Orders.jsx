@@ -10,7 +10,7 @@ const Orders = () => {
   const dispatch = useDispatch();
   const orderState = useSelector((state) => state.getUserOrdersReducer);
   const { orders, error, loading } = orderState;
-  console.log(orders);
+
   useEffect(() => {
     dispatch(getUserOrders());
   }, [dispatch]);

@@ -21,7 +21,12 @@ const Navbar = () => {
   const { currentUser } = userState;
   const { users } = usersState;
 
-  const userInfo = users.find(item => item._id === currentUser._id)
+  let userInfo
+
+if(currentUser){
+   userInfo = users.find(item => item._id === currentUser._id)
+}
+  
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -34,7 +39,6 @@ const Navbar = () => {
     >
       <div className="app__navbar-logo">
         <Link to="/">
-        <img src={images.logopizza} alt="app__logo" style={{ width: "120px"}} />
           <img src={images.gericht} alt="app__logo" />
         </Link>
       </div>
@@ -53,6 +57,9 @@ const Navbar = () => {
               /></Dropdown.Toggle>
             
             <Dropdown.Menu>
+              {userInfo?.isAdmin === true ? <Dropdown.Item  as={Link} to="/admin">
+                Quản lý
+              </Dropdown.Item> : null}
             <Dropdown.Item  as={Link} to="/user">
                 Thông tin cá nhân
               </Dropdown.Item>

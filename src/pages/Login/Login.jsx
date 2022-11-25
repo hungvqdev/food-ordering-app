@@ -1,9 +1,9 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userActions";
 import { Navbar, SubHeading } from "../../components";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Loading from "../../components/Alert/Loading";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,9 +26,11 @@ const schema = yup
 const Login = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory()
   const loginState = useSelector((state) => state.loginUserReducer);
   const { loading } = loginState;
-
+  const usersState = useSelector((state) => state.getAllUsersReducer);
+  const { users } = usersState;
   const {
     register,
     handleSubmit,
@@ -36,13 +38,22 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [ errorLogin, setErrorLogin ] = useState('')
   const login = (user) => {
-     dispatch(loginUser(user));
+    const userLogin =  users.find(e => e.email === user.email)
+      if(!userLogin){
+        setErrorLogin('Email này chưa đước đăng ký')
+      } else {
+        dispatch(loginUser(user));
+        setErrorLogin('')
+      } 
   };
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
-      window.location.href = "/";
+      // window.location.href = "/";
+      history.replace('/')
     }
   }, []);
 
@@ -81,6 +92,7 @@ const Login = () => {
                     />
                   </div>
                   <p className='valid_error'>{errors.email?.message}</p>
+                  <p className='valid_error'>{errorLogin}</p>
 
                   <div className="input-box">
                     <input
