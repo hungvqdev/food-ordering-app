@@ -11,7 +11,6 @@ const adminRouter = require('./routes/admin')
 
 app.use(cors());
 app.use(express.json())
-app.use('/', express.static(path.join(__dirname, 'dist')))
 
 app.use('/api/pizza/', pizzaRouter)
 app.use('/api/users/', authRouter)
