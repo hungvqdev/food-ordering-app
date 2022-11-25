@@ -2,6 +2,7 @@ const express = require('express')
 const db = require('./db')
 const cors = require('cors');
 const app = express()
+require('dotenv').config();
 
 const pizzaRouter = require('./routes/pizza')
 const authRouter = require('./routes/auth')

@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-var mongoURL = process.env.DATABASE_URL
+var mongoURL = process.env.DATABASE_URL || 'mongodb+srv://hungvq:Pass1@cluster0.mzvgb.mongodb.net/pizza?retryWrites=true&w=majority'
 
 mongoose.connect(mongoURL)
 
